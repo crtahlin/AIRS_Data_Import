@@ -2,7 +2,7 @@
 #' @description A function to import data for a certain sensor from and AIRS generated CSV file into R.
 #' @details 
 #' Currently implemented specificaly for "HP" aka "heart rate" sensor (i.e. Zephyr bluetooth). It might in principle work on other sensor data, although the columns will surely not get proper names.
-#' @param filePath The path to the CSV file containing AIRS exported data.
+#' @param filePath The path to the CSV file containing AIRS exported data. Use forward slashes to separate folders (e.g. "/").  
 #' @param sensor The abbreviation representing the sensor. I.e "HP" for heart rate.
 #' @export 
 AIRSImport <- function( filePath, 
@@ -18,7 +18,7 @@ AIRSImport <- function( filePath,
   str(initialDate)
   initialDate <- as.POSIXct(initialDate, format="%a %B %d %H:%M:%S %z %Y")
   Sys.setlocale("LC_TIME", lct)
-    
+  
   # find lines with patterns that match desired sensor 
   validEntries <- grep(pattern=sensor,x=data)
   
@@ -37,7 +37,7 @@ AIRSImport <- function( filePath,
   
   # name the columns of the HP measurements
   if (sensor=="HP") {
-  colnames(AIRS_HP) <- c("Miliseconds","Sensor","Value")
+    colnames(AIRS_HP) <- c("Miliseconds","Sensor","Value")
   }
   
   # add a date column to data
@@ -46,6 +46,7 @@ AIRSImport <- function( filePath,
   date <- get(paste0("AIRS_", sensor))$Miliseconds/1000 + initialDate
   assign( x=paste0("AIRS_", sensor),
           value=cbind(get(paste0("AIRS_", sensor)), date))
+  return(get(paste0("AIRS_", sensor)))
 }
 
 
