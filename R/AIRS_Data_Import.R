@@ -1,13 +1,20 @@
 #' @title Import AIRS data exported as CSV from an Android phone
-#' @description A function to import data for a certain sensor from and AIRS generated CSV file into R.
+#' @description A function to import data for a certain sensor from and AIRS 
+#' generated CSV file into R.
+#' 
 #' @details 
-#' Currently implemented specificaly for "HP" aka "heart rate" sensor (i.e. Zephyr bluetooth). It might in principle work on other sensor data, although the columns will surely not get proper names.
-#' @param filePath The path to the CSV file containing AIRS exported data. Use forward slashes to separate folders (e.g. "/").  
+#' Currently implemented specificaly for "HP" aka "heart rate" sensor 
+#' (i.e. Zephyr bluetooth). It might in principle work on other sensor data,
+#'  although the columns will surely not get proper names.
+#'  
+#' @param filePath The path to the CSV file containing AIRS exported data.
+#' Use forward slashes to separate folders (e.g. "/").
+#' 
 #' @param sensor The abbreviation representing the sensor. I.e "HP" for heart rate.
+#' 
 #' @export 
 AIRSImport <- function( filePath, 
                         sensor) {
-  
   # read data from CSV file
   data <- readLines(con=filePath)
   
@@ -28,9 +35,9 @@ AIRSImport <- function( filePath,
     assign( x=paste0("AIRS_", sensor),
             value=read.table(text=temp,
                              sep=";", 
-                             comment.char="@"
+                             comment.char="@" 
+                             )
             )
-    )
     rm(temp)
     rm(data)
   })
@@ -45,7 +52,9 @@ AIRSImport <- function( filePath,
   names(date) <- "Date"
   date <- get(paste0("AIRS_", sensor))$Miliseconds/1000 + initialDate
   assign( x=paste0("AIRS_", sensor),
-          value=cbind(get(paste0("AIRS_", sensor)), date))
+          value=cbind(get(paste0("AIRS_", sensor)), date)
+          )
+  
   return(get(paste0("AIRS_", sensor)))
 }
 
