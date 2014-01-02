@@ -1,12 +1,10 @@
-### Import data from a CSV file exported from the AIRS android app
-
-#' Import AIRS data exported as CSV from an Android phone
-#' 
-#' A function to import data for a certain sensor from and AIRS generated CSV file into R.
+#' @title Import AIRS data exported as CSV from an Android phone
+#' @description A function to import data for a certain sensor from and AIRS generated CSV file into R.
+#' @details 
 #' Currently implemented specificaly for "HP" aka "heart rate" sensor (i.e. Zephyr bluetooth). It might in principle work on other sensor data, although the columns will surely not get proper names.
-#' @filePath The path to the CSV file containing AIRS exported data.
-#' @sensor The abbreviation representing the sensor. I.e "HP" for heart rate. 
-#' 
+#' @param filePath The path to the CSV file containing AIRS exported data.
+#' @param sensor The abbreviation representing the sensor. I.e "HP" for heart rate.
+#' @export 
 AIRSImport <- function( filePath, 
                         sensor) {
   
@@ -52,39 +50,34 @@ AIRSImport <- function( filePath,
 
 
 ########## Below are functions for debugging #############
+# 
+# # set path to CSV file exported form AIRS
+# filePath <- "C:/Users/Crt Ahlin/Documents/Dropbox/DataSets/AIRS/1385030889684_2.txt"
+# 
+# # set desired sensor
+# sensor <- "HP"
+# 
+# # extract the timestamp of data export from CSV file name
+# # assumptions: the origin is "1970-01-01 00:00.00 CET"
+# string <- regexpr(pattern="/?[[:digit:]]+.txt", text=filePath)
+# string <- string + 1
+# attr(string, "match.length") <- attr(string,"match.length") - 5
+# miliseconds <- regmatches(filePath, string)
+# seconds <- as.double(miliseconds)/1000
+# str(miliseconds)
+# fileTimestamp <- as.POSIXlt(x=seconds, tz="CET", origin="1970-01-01 00:00.00 CET")
+# fileTimestampMiliseconds <- miliseconds
+# 
+# # list valid entries for chosen sensor
+# data[validEntries]
+# 
+# # name the columns of the HP measurements
+# colnames(AIRS_HP) <- c("Miliseconds","Sensor","Value")
+# 
+# head(AIRS_HP)
+# str(AIRS_HP)
+# 
+# plot(AIRS_HP$Value ~ AIRS_HP$Miliseconds,
+#      type="l")
+# 
 
-# set path to CSV file exported form AIRS
-filePath <- "C:/Users/Crt Ahlin/Documents/Dropbox/DataSets/AIRS/1385030889684_2.txt"
-
-# set desired sensor
-sensor <- "HP"
-
-# extract the timestamp of data export from CSV file name
-# assumptions: the origin is "1970-01-01 00:00.00 CET"
-string <- regexpr(pattern="/?[[:digit:]]+.txt", text=filePath)
-string <- string + 1
-attr(string, "match.length") <- attr(string,"match.length") - 5
-miliseconds <- regmatches(filePath, string)
-seconds <- as.double(miliseconds)/1000
-str(miliseconds)
-fileTimestamp <- as.POSIXlt(x=seconds, tz="CET", origin="1970-01-01 00:00.00 CET")
-fileTimestampMiliseconds <- miliseconds
-
-# list valid entries for chosen sensor
-data[validEntries]
-
-# name the columns of the HP measurements
-colnames(AIRS_HP) <- c("Miliseconds","Sensor","Value")
-
-head(AIRS_HP)
-str(AIRS_HP)
-
-plot(AIRS_HP$Value ~ AIRS_HP$Miliseconds,
-     type="l")
-
-
-# TODO: 
-Naredi export podatkov s telefona
-dodaj, da odstrani # znak iz začetka vrstic
-popravi import začetnega timestampa (nov format)
-zbriši odvečen vrstice, pokomentiraj
