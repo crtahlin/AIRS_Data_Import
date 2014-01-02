@@ -1,0 +1,17 @@
+Package: AIRS_Data_Import
+Type: Package
+Title: Importing AIRS exported CSV data into R
+Version: 0.1
+Date: 2013-1-2
+Author: Crt Ahlin
+Maintainer: Crt Ahlin <crt.ahlin@gmail.com>
+Description: A script for importing the data gathered by the AIRS Android app
+             and exported as CSV into R.
+License: GPL-3
+Depends:
+Imports:
+Suggests:
+URL: https://github.com/crtahlin/AIRS_Data_Import
+BugReports: https://github.com/crtahlin/AIRS_Data_Import/issues
+Collate:
+    
