@@ -29,7 +29,7 @@ AIRSImport <- function( filePath,
   validEntries <- grep(pattern=sensor,x=data)
   
   # read data into dataframe
-  system.time({
+  elapsedTime <- system.time({
     temp <- gsub(x = data[validEntries], pattern = "#", replacement = "")
     assign( x=paste0("AIRS_", sensor),
             value=read.table(text=temp,
@@ -40,6 +40,8 @@ AIRSImport <- function( filePath,
     rm(temp)
     rm(data)
   })
+  print(elapsedTime)
+  rm(elapsedTime)
   
   # name the columns of the HP measurements
   if (sensor=="HP") {
