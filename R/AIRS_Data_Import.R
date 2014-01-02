@@ -48,7 +48,7 @@ AIRSImport <- function( filePath,
   
   # add a date column to data
   date <- vector(length=dim(get(paste0("AIRS_", sensor)))[1], mode="numeric")
-  names(date) <- "Date"
+  colnames(date) <- "Date"
   date <- get(paste0("AIRS_", sensor))$Miliseconds/1000 + initialDate
   assign( x=paste0("AIRS_", sensor),
           value=cbind(get(paste0("AIRS_", sensor)), date)
