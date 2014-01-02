@@ -8,9 +8,6 @@ Maintainer: Crt Ahlin <crt.ahlin@gmail.com>
 Description: A script for importing the data gathered by the AIRS Android app
              and exported as CSV into R.
 License: GPL-3
-Depends:
-Imports:
-Suggests:
 URL: https://github.com/crtahlin/AIRS_Data_Import
 BugReports: https://github.com/crtahlin/AIRS_Data_Import/issues
     
