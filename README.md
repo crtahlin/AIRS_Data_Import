@@ -11,3 +11,7 @@ devtools::install_github(repo="AIRS_Data_Import", username="crtahlin")
 
 library(AIRSDataImport)
 ```
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/crtahlin/airs_data_import/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
