@@ -1,8 +1,8 @@
-\name{AIRSImport}
-\alias{AIRSImport}
-\title{Import AIRS data exported as CSV from an Android phone}
+\name{AIRSImportExtended}
+\alias{AIRSImportExtended}
+\title{Import AIRS data exported as CSV from an Android phone and add extra information}
 \usage{
-AIRSImport(filePath, sensor)
+AIRSImportExtended(filePath, sensor)
 }
 \arguments{
   \item{filePath}{The path to the CSV file containing AIRS
@@ -14,7 +14,8 @@ AIRSImport(filePath, sensor)
 }
 \description{
 A function to import data for a certain sensor from and
-AIRS generated CSV file into R.
+AIRS generated CSV file into R. The function adds extra
+columns to imported data for easier data manipulation.
 }
 \details{
 Currently implemented specificaly for "HP" aka "heart
