@@ -3,6 +3,7 @@
 #' 
 #' @param dataFileAIRS Dataframe containing info about uploaded files via shiny::fileInput().
 #' @param sensor The sensor data to import.
+#' @export
 AIRSImportMultiple <- function (dataFilesAIRS, sensor) {
 data <- data.frame
   for(file in dataFilesAIRS$datapath) {
