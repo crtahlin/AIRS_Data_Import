@@ -5,11 +5,11 @@
 #' @param sensor The sensor data to import.
 #' @export
 AIRSImportMultiple <- function (dataFilesAIRS, sensor) {
-data <- data.frame
+  data <- data.frame
   for(file in dataFilesAIRS$datapath) {
-tempData <- AIRSImportExtended(filePath=file, sensor=sensor)
-data <- rbind(data, tempData)
-}
+    tempData <- AIRSImportExtended(filePath=file, sensor=sensor)
+    data <- rbind(data, tempData)
+  }
   return(data)
 }
 
@@ -51,7 +51,7 @@ AIRSImport <- function( filePath,
             value=read.table(text=temp,
                              sep=";", 
                              comment.char="@" )
-            )
+    )
     rm(temp)
     rm(data)
   })
