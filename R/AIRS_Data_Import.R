@@ -103,6 +103,7 @@ AIRSImportExtended <- function(filePath, sensor) {
   data$"CyclicTime" <- (data$"TimeinSeconds" / (60*60*24)) %% 1
   data$"Weekday" <- c("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", 
                       "Friday", "Saturday")[as.POSIXlt(data$Date)$wday + 1]
+  # TODO: check if time zones are correctly intepredted when calculating data$"Day"
   data$"Day" <- format(data$Date, format="%d.%m.%Y")
   return(data)
   
