@@ -1,3 +1,18 @@
+#' @title Import multiple AIRS files
+#' @description  A function that imports multiple AIRS data files into one dataframe. 
+#' 
+#' @param dataFileAIRS Dataframe containing info about uploaded files via shiny::fileInput().
+#' @param sensor The sensor data to import.
+AIRSImportMultiple <- function (dataFilesAIRS, sensor) {
+data <- data.frame
+  for(file in dataFilesAIRS$datapath) {
+tempData <- AIRSImportExtended(filePath=file, sensor=sensor)
+data <- rbind(data, tempData)
+}
+  return(data)
+}
+
+
 #' @title Import AIRS data exported as CSV from an Android phone
 #' @description A function to import data for a certain sensor from and AIRS 
 #' generated CSV file into R.
