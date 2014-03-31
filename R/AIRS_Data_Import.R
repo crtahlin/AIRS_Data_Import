@@ -5,7 +5,7 @@
 #' @param sensor The sensor data to import.
 #' @export
 AIRSImportMultiple <- function (dataFilesAIRS, sensor) {
-  data <- data.frame
+  data <- data.frame()
   for(file in dataFilesAIRS$datapath) {
     tempData <- AIRSImportExtended(filePath=file, sensor=sensor)
     data <- rbind(data, tempData)
@@ -57,7 +57,6 @@ AIRSImport <- function( filePath,
   })
   print(elapsedTime)
   rm(elapsedTime)
-  
   # name the columns of the HP measurements
   if (sensor=="HP") {
     colnames(AIRS_HP) <- c("MilisecsSinceOrigin","Sensor","Value")
