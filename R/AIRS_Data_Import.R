@@ -42,7 +42,7 @@ AIRSImport <- function( filePath,
   Sys.setlocale("LC_TIME", lct)
   
   # find lines with patterns that match desired sensor 
-  validEntries <- grep(pattern=sensor,x=data)
+  validEntries <- grep(pattern=paste0(";",sensor,";"),x=data)
   
   # read data into dataframe
   elapsedTime <- system.time({
