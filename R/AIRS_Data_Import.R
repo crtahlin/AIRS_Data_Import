@@ -38,7 +38,15 @@ AIRSImport <- function( filePath,
   # temporarily set locale to "C" for date recognition
   lct <- Sys.getlocale("LC_TIME"); Sys.setlocale("LC_TIME", "C")
   initialDate <- data[1]
-  initialDate <- as.POSIXct(initialDate, format="%a %B %d %H:%M:%S GMT%z %Y")
+  
+  # remove extra date information, which breaks the code
+  # this extra info was added sometime in 2014?
+  temp <- strsplit(initialDate, " GMT")
+  temp[[1]][2] <- gsub(temp[[1]][2], pattern=":", replacement="")
+  initialDate <- paste(temp[[1]][1], temp[[1]][2])
+  # end of hacking section
+  
+  initialDate <- as.POSIXct(initialDate, format="%a %B %d %H:%M:%S %z %Y")
   Sys.setlocale("LC_TIME", lct)
   
   # find lines with patterns that match desired sensor 
